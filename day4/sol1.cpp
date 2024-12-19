@@ -3,12 +3,11 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#include <utility>
 #include <vector>
 
 using namespace std;
 
-uint64_t up(vector<string> grid, int i, int j) {
+uint64_t up(const vector<string> &grid, int i, int j) {
     if (grid[i][j] != 'X') {
         return 0;
     }
@@ -24,7 +23,7 @@ uint64_t up(vector<string> grid, int i, int j) {
     word += grid[i - 3][j];
     return word == "XMAS" ? 1 : 0;
 }
-uint64_t down(vector<string> grid, int i, int j) {
+uint64_t down(const vector<string> &grid, int i, int j) {
     if (grid[i][j] != 'X') {
         return 0;
     }
@@ -40,11 +39,11 @@ uint64_t down(vector<string> grid, int i, int j) {
     word += grid[i + 3][j];
     return word == "XMAS" ? 1 : 0;
 }
-uint64_t vertical(vector<string> grid, int i, int j) {
+uint64_t vertical(const vector<string> &grid, int i, int j) {
     return up(grid, i, j) + down(grid, i, j);
 }
 
-uint64_t left(vector<string> grid, int i, int j) {
+uint64_t left(const vector<string> &grid, int i, int j) {
     if (grid[i][j] != 'X') {
         return 0;
     }
@@ -60,7 +59,7 @@ uint64_t left(vector<string> grid, int i, int j) {
     word += grid[i][j - 3];
     return word == "XMAS" ? 1 : 0;
 }
-uint64_t right(vector<string> grid, int i, int j) {
+uint64_t right(const vector<string> &grid, int i, int j) {
     if (grid[i][j] != 'X') {
         return 0;
     }
@@ -76,11 +75,11 @@ uint64_t right(vector<string> grid, int i, int j) {
     word += grid[i][j + 3];
     return word == "XMAS" ? 1 : 0;
 }
-uint64_t horizontal(vector<string> grid, int i, int j) {
+uint64_t horizontal(const vector<string> &grid, int i, int j) {
     return left(grid, i, j) + right(grid, i, j);
 }
 
-uint64_t topleft(vector<string> grid, int i, int j) {
+uint64_t topleft(const vector<string> &grid, int i, int j) {
     if (grid[i][j] != 'X') {
         return 0;
     }
@@ -96,7 +95,7 @@ uint64_t topleft(vector<string> grid, int i, int j) {
     word += grid[i - 3][j - 3];
     return word == "XMAS" ? 1 : 0;
 }
-uint64_t bottomright(vector<string> grid, int i, int j) {
+uint64_t bottomright(const vector<string> &grid, int i, int j) {
     if (grid[i][j] != 'X') {
         return 0;
     }
@@ -112,11 +111,11 @@ uint64_t bottomright(vector<string> grid, int i, int j) {
     word += grid[i + 3][j + 3];
     return word == "XMAS" ? 1 : 0;
 }
-uint64_t diagonal1(vector<string> grid, int i, int j) {
+uint64_t diagonal1(const vector<string> &grid, int i, int j) {
     return topleft(grid, i, j) + bottomright(grid, i, j);
 }
 
-uint64_t topright(vector<string> grid, int i, int j) {
+uint64_t topright(const vector<string> &grid, int i, int j) {
     if (grid[i][j] != 'X') {
         return 0;
     }
@@ -132,7 +131,7 @@ uint64_t topright(vector<string> grid, int i, int j) {
     word += grid[i - 3][j + 3];
     return word == "XMAS" ? 1 : 0;
 }
-uint64_t bottomleft(vector<string> grid, int i, int j) {
+uint64_t bottomleft(const vector<string> &grid, int i, int j) {
     if (grid[i][j] != 'X') {
         return 0;
     }
@@ -148,11 +147,11 @@ uint64_t bottomleft(vector<string> grid, int i, int j) {
     word += grid[i + 3][j - 3];
     return word == "XMAS" ? 1 : 0;
 }
-uint64_t diagonal2(vector<string> grid, int i, int j) {
+uint64_t diagonal2(const vector<string> &grid, int i, int j) {
     return topright(grid, i, j) + bottomleft(grid, i, j);
 }
 
-uint64_t countXmas(vector<string> grid) {
+uint64_t countXmas(const vector<string> &grid) {
     size_t n = grid.size();
     size_t m = grid[0].size();
     uint64_t ans = 0;
